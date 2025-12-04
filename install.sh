@@ -12,12 +12,12 @@ clear
 
 installTheme(){
     cd /var/www/
-    tar -cvf IceMinecraftTheme.tar.gz pterodactyl
+    tar -cvf project.tar.gz pterodactyl
     echo "Installing theme..."
     cd /var/www/pterodactyl
-    rm -r IceMinecraftTheme
-    git clone https://github.com/Angelillo15/IceMinecraftTheme.git
-    cd IceMinecraftTheme
+    rm -r project
+    git clone https://github.com/nellow15/project.git
+    cd project
     rm /var/www/pterodactyl/resources/scripts/IceMinecraftTheme.css
     rm /var/www/pterodactyl/resources/scripts/index.tsx
     rm /var/www/pterodactyl/resources/scripts/components/server/console/Console.tsx
@@ -60,14 +60,14 @@ installThemeQuestion(){
 }
 
 repair(){
-    bash <(curl https://raw.githubusercontent.com/Angelillo15/IceMinecraftTheme/main/repair.sh)
+    bash <(curl https://raw.githubusercontent.com/nellow15/project/main/repair.sh)
 }
 
 restoreBackUp(){
     echo "Restoring backup..."
     cd /var/www/
-    tar -xvf IceMinecraftTheme.tar.gz
-    rm IceMinecraftTheme.tar.gz
+    tar -xvf project.tar.gz
+    rm project.tar.gz
 
     cd /var/www/pterodactyl
     yarn build:production
@@ -88,11 +88,11 @@ printf "${blue}  \(     \( |____|/   \( |_____|/            \(              \(  
 printf "${blue}   '      '   )/       '    )/                '               '     '      '    )/         '          '         '    )/     \n"
 printf "${blue}              '             '                                                   '                                    '      \n"
 echo ""
-echo "Copyright (c) 2022 Angelillo15 | angelillo15.es"
+echo "Copyright (c) 2025 NelloW15 | shardox.web.id"
 echo "This program is free software: you can redistribute it and/or modify"
 echo ""
-echo "Discord: https://discord.angelillo15.es/"
-echo "Website: https://angelillo15.es/"
+echo "Discord: commingsoon"
+echo "Website: https://shardox.web.id/"
 echo ""
 echo "[1] Install theme"
 echo "[2] Restore backup"
