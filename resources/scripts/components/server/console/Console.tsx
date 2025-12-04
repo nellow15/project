@@ -20,35 +20,36 @@ import 'xterm/css/xterm.css';
 import styles from './style.module.css';
 
 const theme = {
-  background: '#111F26',
+  background: 'rgba(15, 25, 35, 0.7)',
   cursor: 'transparent',
-  black: th`colors.black`.toString(),
+  black: '#0F1923',
   red: '#E54B4B',
-  green: '#9ECE58',
-  yellow: '#FAED70',
-  blue: '#396FE2',
-  magenta: '#BB80B3',
+  green: '#5BC0BE',
+  yellow: '#FFD166',
+  blue: '#4A9FF5',
+  magenta: '#9D4EDD',
   cyan: '#2DDAFD',
   white: '#d0d0d0',
   brightBlack: 'rgba(255, 255, 255, 0.2)',
-  brightRed: '#FF5370',
+  brightRed: '#FF6B6B',
   brightGreen: '#C3E88D',
   brightYellow: '#FFCB6B',
   brightBlue: '#82AAFF',
   brightMagenta: '#C792EA',
   brightCyan: '#89DDFF',
   brightWhite: '#ffffff',
-  selection: '#FAF089',
+  selection: 'rgba(74, 159, 245, 0.3)',
 };
 
 const terminalProps: ITerminalOptions = {
   disableStdin: true,
   cursorStyle: 'underline',
   allowTransparency: true,
-  fontSize: 12,
-  fontFamily: th('fontFamily.mono'),
+  fontSize: 13,
+  fontFamily: "'JetBrains Mono', 'Fira Code', Consolas, monospace",
   rows: 30,
   theme: theme,
+  letterSpacing: 0.5,
 };
 
 export default () => {
@@ -189,18 +190,27 @@ export default () => {
     };
   }, [connected, instance]);
 
-  return (
+return (
     <div className={classNames(styles.terminal, 'relative')}>
       <SpinnerOverlay visible={!connected} size={'large'} />
       <div className={classNames(styles.container, styles.overflows_container, { 'rounded-b': !canSendCommands })}>
         <div className={'h-full'}>
-          <div id={styles.terminal} ref={ref} />
+          <div 
+            id={styles.terminal} 
+            ref={ref} 
+            className="rounded-lg overflow-hidden border border-blue-500/20 shadow-lg"
+          />
         </div>
       </div>
       {canSendCommands && (
-        <div className={classNames('relative', styles.overflows_container)}>
+        <div className={classNames('relative', styles.overflows_container, 'mt-4')}>
           <input
-            className={classNames('peer', styles.command_input)}
+            className={classNames(
+              'peer', 
+              styles.command_input,
+              'bg-gray-800/70 backdrop-blur-sm border border-blue-500/30 rounded-lg',
+              'focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20'
+            )}
             type={'text'}
             placeholder={'Type a command...'}
             aria-label={'Console command input.'}
@@ -211,7 +221,7 @@ export default () => {
           />
           <div
             className={classNames(
-              'text-gray-100 peer-focus:text-gray-50 peer-focus:animate-pulse',
+              'text-blue-400 peer-focus:text-blue-300 peer-focus:animate-pulse',
               styles.command_icon
             )}
           >
